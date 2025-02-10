@@ -1,5 +1,16 @@
-import {BanknoteIcon, BellIcon, LineChart, PieChart, SearchIcon, Shield, TagsIcon, Wallet,} from "lucide-react";
-import {Feature} from "@/types/types";
+import {
+  BanknoteIcon,
+  BellIcon, BellRing,
+  Home,
+  LineChart,
+  PieChart,
+  SearchIcon,
+  Shield,
+  TagsIcon,
+  Wallet,
+  Wallet2,
+} from "lucide-react";
+import {Feature, MenuItem} from "@/types/types";
 
 export const features: Feature[] = [{
   icon: Wallet,
@@ -34,3 +45,10 @@ export const features: Feature[] = [{
   title: "Bank-Level Security",
   description: "Rest easy knowing your data is protected with enterprise-grade encryption and secure authentication protocols."
 }];
+
+export const menuItems: MenuItem[] = [
+  {icon: Home, label: "Overview", path: "/dashboard"},
+  {icon: Wallet2, label: "Transactions", path: "/dashboard/transactions"},
+  {icon: PieChart, label: "Budget", path: "/dashboard/budget"},
+  {icon: BellRing, label: "Alerts", path: "/dashboard/alerts"},
+]

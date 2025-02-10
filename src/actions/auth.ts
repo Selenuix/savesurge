@@ -125,3 +125,8 @@ export async function signin(state: FormState, formData: FormData) {
     };
   }
 }
+
+export async function signOut() {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+}

@@ -5,3 +5,9 @@ export interface Feature {
   title: string,
   description: string,
 }
+
+export interface MenuItem {
+  icon: LucideIcon,
+  label: string,
+  path: string
+}
