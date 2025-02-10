@@ -6,7 +6,7 @@ import {
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
+  SidebarMenuItem, useSidebar,
 } from "@/components/ui/sidebar";
 import {Button} from "@/components/ui/button";
 import {MenuItem} from "@/types/types";
@@ -17,8 +17,14 @@ import {menuItems} from "@/consts/menu-items";
 
 export function SidebarNavigation() {
   const router = useRouter();
+  const {setOpenMobile} = useSidebar();
   const {isActive} = useActiveRoute();
   const navigate = (path: string) => router.push(path);
+
+  const handleNavigate = (path: string) => {
+    setOpenMobile(false)
+    navigate(path)
+  }
 
   return (
     <SidebarGroup>
@@ -37,7 +43,7 @@ export function SidebarNavigation() {
                       "w-full justify-start",
                       active && "bg-muted"
                     )}
-                    onClick={() => navigate(item.path)}
+                    onClick={() => handleNavigate(item.path)}
                   >
                     <item.icon className={cn(
                       "mr-2 h-4 w-4",

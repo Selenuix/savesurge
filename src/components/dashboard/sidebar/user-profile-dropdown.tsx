@@ -54,7 +54,7 @@ export function UserProfileDropdown() {
             <div className="flex items-center space-x-3">
               <div className="flex-shrink-0">
                 {loading ? (
-                  <Skeleton className="h-8 w-8 rounded-full bg-muted-foreground/20"/>
+                  <Skeleton className="h-8 w-8 rounded-full bg-gray-600"/>
                 ) : (
                   <Avatar>
                     {/* TODO: use the user's avatar */}
@@ -65,9 +65,9 @@ export function UserProfileDropdown() {
               </div>
               <div className="text-left flex-1 min-w-0">
                 {loading ? (
-                  <div className="space-y-1.5">
-                    <Skeleton className="h-5 w-32"/>
-                    <Skeleton className="h-4 w-40"/>
+                  <div className="space-y-1.5 ">
+                    <Skeleton className="h-5 w-32 bg-gray-600"/>
+                    <Skeleton className="h-4 w-40 bg-gray-600"/>
                   </div>
                 ) : (
                   <>
