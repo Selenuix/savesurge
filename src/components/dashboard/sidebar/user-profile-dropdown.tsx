@@ -15,6 +15,8 @@ import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import {createClient} from "@/utils/supabase/client";
 import {Skeleton} from "@/components/ui/skeleton";
+import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import {getAvatarFallback} from "@/utils/formatter";
 
 export function UserProfileDropdown() {
   const router = useRouter();
@@ -50,22 +52,32 @@ export function UserProfileDropdown() {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="w-full flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <User className="h-8 w-8 text-muted-foreground"/>
-              <div className="text-left">
+              <div className="flex-shrink-0">
                 {loading ? (
-                  <div className="space-y-2">
-                    <Skeleton className="h-4 w-24"/>
-                    <Skeleton className="h-3 w-32"/>
+                  <Skeleton className="h-8 w-8 rounded-full bg-muted-foreground/20"/>
+                ) : (
+                  <Avatar>
+                    {/* TODO: use the user's avatar */}
+                    <AvatarImage src="https://github.com/shadcn.png"/>
+                    <AvatarFallback>{getAvatarFallback(userProfile?.firstname, userProfile?.lastname)}</AvatarFallback>
+                  </Avatar>
+                )}
+              </div>
+              <div className="text-left flex-1 min-w-0">
+                {loading ? (
+                  <div className="space-y-1.5">
+                    <Skeleton className="h-5 w-32"/>
+                    <Skeleton className="h-4 w-40"/>
                   </div>
                 ) : (
                   <>
-                    <p className="text-sm font-medium">{userProfile?.username}</p>
-                    <p className="text-xs text-muted-foreground">{userProfile?.email}</p>
+                    <p className="text-sm font-semibold truncate">{userProfile?.username}</p>
+                    <p className="text-xs text-muted-foreground truncate">{userProfile?.email}</p>
                   </>
                 )}
               </div>
             </div>
-            <ChevronDown className="h-4 w-4 ml-2"/>
+            <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0"/>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px]">
