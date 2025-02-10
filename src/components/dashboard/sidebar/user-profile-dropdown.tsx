@@ -14,22 +14,28 @@ import {signOut} from "@/actions/auth";
 import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import {createClient} from "@/utils/supabase/client";
+import {Skeleton} from "@/components/ui/skeleton";
 
 export function UserProfileDropdown() {
   const router = useRouter();
   const [userProfile, setUserProfile] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const supabase = createClient();
 
   useEffect(() => {
     async function getProfile() {
-      const {data: {user}} = await supabase.auth.getUser();
-      if (user?.id) {
-        const {data} = await supabase
-          .from('profiles')
-          .select('username, email')
-          .eq('id', user.id)
-          .single();
-        setUserProfile(data);
+      try {
+        const {data: {user}} = await supabase.auth.getUser();
+        if (user?.id) {
+          const {data} = await supabase
+            .from('profiles')
+            .select('username, email')
+            .eq('id', user.id)
+            .single();
+          setUserProfile(data);
+        }
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -39,15 +45,24 @@ export function UserProfileDropdown() {
   const navigate = (path: string) => router.push(path);
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 p-4 border-t bg-background">
+    <div className="p-4 border-t bg-background">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="w-full flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <User className="h-8 w-8 text-muted-foreground"/>
               <div className="text-left">
-                <p className="text-sm font-medium">{userProfile?.username || 'Loading...'}</p>
-                <p className="text-xs text-muted-foreground">{userProfile?.email || 'Loading...'}</p>
+                {loading ? (
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-24"/>
+                    <Skeleton className="h-3 w-32"/>
+                  </div>
+                ) : (
+                  <>
+                    <p className="text-sm font-medium">{userProfile?.username}</p>
+                    <p className="text-xs text-muted-foreground">{userProfile?.email}</p>
+                  </>
+                )}
               </div>
             </div>
             <ChevronDown className="h-4 w-4 ml-2"/>
