@@ -13,7 +13,7 @@ import {MenuItem} from "@/types/types";
 import {useRouter} from "next/navigation";
 import {useActiveRoute} from "@/utils/navigation";
 import {cn} from "@/lib/utils";
-import {menuItems} from "@/consts/menu-items";
+import {menuItems} from "@/components/dashboard/sidebar/menu-items";
 
 export function SidebarNavigation() {
   const router = useRouter();

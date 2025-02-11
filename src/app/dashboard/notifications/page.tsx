@@ -1,3 +1,3 @@
 export default function AlertsPage() {
-  return <h1>Alerts</h1>
+  return <h1>Notifications</h1>
 }

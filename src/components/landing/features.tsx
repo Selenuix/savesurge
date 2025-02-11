@@ -1,7 +1,7 @@
 'use client'
 
 import {motion} from "framer-motion";
-import {features} from "@/consts/landing-features";
+import {features} from "@/components/landing/landing-features";
 
 export const Features = () => {
   return (<section className="py-24 bg-white px-6" id="features-section">
