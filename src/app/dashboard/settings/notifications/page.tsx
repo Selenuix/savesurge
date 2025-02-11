@@ -16,8 +16,9 @@ export default function NotificationsPage() {
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="space-y-4">
-          {availableNotifications.map((notification: AvailableNotification) => {
+          {availableNotifications.map((notification: AvailableNotification, key: number) => {
             return (<Notification
+              key={key}
               id={notification.id}
               title={notification.title}
               description={notification.description}

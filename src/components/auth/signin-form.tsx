@@ -8,7 +8,7 @@ import {Label} from "@/components/ui/label"
 import {useActionState, useEffect} from "react";
 import {setUserDefaults, signin} from "@/actions/auth";
 import {useRouter} from "next/navigation";
-import {type AppSettings} from "@/components/dashboard/settings/preferences/app-settings";
+import {type AppSettings} from "@/components/dashboard/settings/app-settings";
 import {useLocalStorage} from "@uidotdev/usehooks";
 
 export function SigninForm() {

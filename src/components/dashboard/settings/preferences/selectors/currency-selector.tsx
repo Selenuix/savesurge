@@ -6,7 +6,7 @@ import {
   type SupportedCurrency
 } from "@/components/dashboard/settings/preferences/supported-currencies";
 import {useLocalStorage} from "@uidotdev/usehooks";
-import {AppSettings, defaultSettings} from "@/components/dashboard/settings/preferences/app-settings";
+import {AppSettings, defaultSettings} from "@/components/dashboard/settings/app-settings";
 import {useToast} from "@/hooks/use-toast";
 
 export function CurrencySelector() {

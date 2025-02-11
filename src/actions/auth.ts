@@ -3,7 +3,8 @@
 import {FormState, SigninFormSchema, SignupFormSchema} from '@/lib/definitions'
 import {createClient} from '@/utils/supabase/server'
 import {cookies} from "next/headers";
-import {defaultSettings} from "@/components/dashboard/settings/preferences/app-settings";
+import {defaultSettings} from "@/components/dashboard/settings/app-settings";
+import {redirect} from "next/navigation";
 
 
 export async function signup(state: FormState, formData: FormData) {
@@ -125,6 +126,7 @@ export async function signin(state: FormState, formData: FormData) {
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
+  redirect('/signin')
 }
 
 export async function setUserDefaults() {
