@@ -2,7 +2,7 @@ import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/compo
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
-import {SaveSettings} from "@/components/dashboard/settings/save-preferences";
+import {SaveSettings} from "@/components/dashboard/settings/preferences/save-preferences";
 
 export default function SecurityPage() {
   return (
@@ -43,7 +43,7 @@ export default function SecurityPage() {
               />
             </div>
           </div>
-          
+
           <SaveSettings variant='password'/>
         </CardContent>
       </Card>

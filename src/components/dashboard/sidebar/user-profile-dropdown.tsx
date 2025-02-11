@@ -42,9 +42,11 @@ export function UserProfileDropdown() {
       <Button variant="ghost" className="w-full flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <div className="flex-shrink-0">
-            {loading ? (<Skeleton className="h-8 w-8 rounded-full bg-gray-600"/>) : (<Avatar>
-              <AvatarImage src={userProfile?.avatar_url}/>
-            </Avatar>)}
+            {loading ? (<Skeleton className="h-8 w-8 rounded-full bg-gray-600"/>) : (
+              <Avatar>
+                <AvatarImage src={userProfile?.avatar_url}/>
+              </Avatar>
+            )}
           </div>
           <div className="text-left flex-1 min-w-0">
             {loading ? (<div className="space-y-1.5 ">

@@ -2,6 +2,8 @@
 
 import {FormState, SigninFormSchema, SignupFormSchema} from '@/lib/definitions'
 import {createClient} from '@/utils/supabase/server'
+import {cookies} from "next/headers";
+import {defaultSettings} from "@/components/dashboard/settings/preferences/app-settings";
 
 
 export async function signup(state: FormState, formData: FormData) {
@@ -34,8 +36,7 @@ export async function signup(state: FormState, formData: FormData) {
 
   try {
     const {data, error} = await supabase.auth.signUp({
-      email,
-      password,
+      email, password,
     });
 
     if (error) {
@@ -52,10 +53,7 @@ export async function signup(state: FormState, formData: FormData) {
       const {error: profileError} = await supabase
         .from('profiles')
         .insert({
-          id: data.user.id,
-          firstname,
-          lastname,
-          username,
+          id: data.user.id, firstname, lastname, username,
         });
 
       if (profileError) {
@@ -92,8 +90,7 @@ export async function signin(state: FormState, formData: FormData) {
 
     return {
       errors: {
-        email: fieldErrors.email || [],
-        password: fieldErrors.password || [],
+        email: fieldErrors.email || [], password: fieldErrors.password || [],
       },
     };
   }
@@ -102,8 +99,7 @@ export async function signin(state: FormState, formData: FormData) {
 
   try {
     const {error} = await supabase.auth.signInWithPassword({
-      email,
-      password,
+      email, password,
     });
 
     if (error) {
@@ -129,4 +125,14 @@ export async function signin(state: FormState, formData: FormData) {
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
+}
+
+export async function setUserDefaults() {
+  const cookieStore = await cookies()
+
+  cookieStore.set({
+    name: "settings", value: JSON.stringify(defaultSettings), httpOnly: true,
+  });
+
+  return defaultSettings;
 }

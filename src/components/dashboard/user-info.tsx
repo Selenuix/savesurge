@@ -1,6 +1,5 @@
 import {createClient} from "@/utils/supabase/server";
 import {redirect} from "next/navigation";
-import {Logout} from "@/components/auth/logout";
 
 export async function UserInfo() {
   const supabase = await createClient()

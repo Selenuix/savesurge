@@ -3,6 +3,7 @@ import {Sidebar, SidebarContent, SidebarFooter, SidebarProvider, SidebarTrigger}
 import {SidebarToggle} from "@/components/dashboard/sidebar/sidebar-toggle";
 import {UserProfileDropdown} from "@/components/dashboard/sidebar/user-profile-dropdown";
 import {SidebarNavigation} from "@/components/dashboard/sidebar/sidebar-navigation";
+import {Toaster} from "@/components/ui/toaster";
 
 export default function DashboardLayout({children}: { children: ReactNode }) {
   return (
@@ -23,6 +24,7 @@ export default function DashboardLayout({children}: { children: ReactNode }) {
               <SidebarToggle/>
             </SidebarTrigger>
             {children}
+            <Toaster/>
           </div>
         </main>
       </div>

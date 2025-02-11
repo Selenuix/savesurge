@@ -1,6 +1,9 @@
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
-import {Notification} from "@/components/dashboard/settings/notification";
-import {AvailableNotification, availableNotifications} from "@/components/dashboard/settings/available-notifications";
+import {Notification} from "@/components/dashboard/settings/notifications/notification";
+import {
+  AvailableNotification,
+  availableNotifications
+} from "@/components/dashboard/settings/notifications/available-notifications";
 
 export default function NotificationsPage() {
   return (<div className="space-y-6">
