@@ -4,6 +4,7 @@ import {Label} from "@/components/ui/label"
 import {Switch} from "@/components/ui/switch"
 import {useLocalStorage} from "@uidotdev/usehooks"
 import {AppSettings, defaultSettings} from "@/components/dashboard/settings/app-settings";
+import {useToast} from "@/hooks/use-toast";
 
 interface NotificationProps {
   id: string
@@ -13,6 +14,7 @@ interface NotificationProps {
 
 export function Notification({title, description, id}: NotificationProps) {
   const [settings, setSettings] = useLocalStorage<AppSettings>("settings", defaultSettings);
+  const {toast} = useToast()
 
   const handleToggle = (value: boolean) => {
     setSettings(prev => ({
@@ -20,6 +22,7 @@ export function Notification({title, description, id}: NotificationProps) {
         ...prev.notification, [id]: value
       }
     }));
+    toast({title: "Settings saved!", description: "Your preferences have been updated."});
   };
 
   return (

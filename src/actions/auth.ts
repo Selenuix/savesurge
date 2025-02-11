@@ -1,12 +1,13 @@
-'use server';
+'use server'
 
 import {FormState, SigninFormSchema, SignupFormSchema} from '@/lib/definitions'
 import {createClient} from '@/utils/supabase/server'
-import {cookies} from "next/headers";
-import {defaultSettings} from "@/components/dashboard/settings/app-settings";
+import {cookies} from "next/headers"
+import {defaultSettings} from "@/components/dashboard/settings/app-settings"
+import {redirect} from "next/navigation"
 
 export async function signup(state: FormState, formData: FormData) {
-  const supabase = await createClient();
+  const supabase = await createClient()
 
   const validatedFields = SignupFormSchema.safeParse({
     firstname: formData.get('firstname') as string,
@@ -14,10 +15,10 @@ export async function signup(state: FormState, formData: FormData) {
     username: formData.get('username') as string,
     email: formData.get('email') as string,
     password: formData.get('password') as string,
-  });
+  })
 
   if (!validatedFields.success) {
-    const fieldErrors = validatedFields.error.flatten().fieldErrors;
+    const fieldErrors = validatedFields.error.flatten().fieldErrors
 
     return {
       errors: {
@@ -27,7 +28,7 @@ export async function signup(state: FormState, formData: FormData) {
         email: fieldErrors.email || [],
         password: fieldErrors.password || [],
       },
-    };
+    }
   }
 
   const {firstname, lastname, username, email, password} = validatedFields.data;
@@ -35,15 +36,15 @@ export async function signup(state: FormState, formData: FormData) {
   try {
     const {data, error} = await supabase.auth.signUp({
       email, password,
-    });
+    })
 
     if (error) {
-      console.error('Signup Error:', error);
+      console.error('Signup Error:', error)
       return {
         errors: {
           server: [error.message],
         },
-      };
+      }
     }
 
     // Create user profile
@@ -52,7 +53,7 @@ export async function signup(state: FormState, formData: FormData) {
         .from('profiles')
         .insert({
           id: data.user.id, email, firstname, lastname, username,
-        });
+        })
 
       if (profileError) {
         console.error('Profile Creation Error:', profileError);
@@ -60,7 +61,7 @@ export async function signup(state: FormState, formData: FormData) {
           errors: {
             server: [profileError.message],
           },
-        };
+        }
       }
     }
 
@@ -83,16 +84,16 @@ export async function signin(state: FormState, formData: FormData) {
   })
 
   if (!validatedFields.success) {
-    const fieldErrors = validatedFields.error.flatten().fieldErrors;
+    const fieldErrors = validatedFields.error.flatten().fieldErrors
 
     return {
       errors: {
         email: fieldErrors.email || [], password: fieldErrors.password || [],
       },
-    };
+    }
   }
 
-  const {email, password} = validatedFields.data;
+  const {email, password} = validatedFields.data
 
   try {
     const {error} = await supabase.auth.signInWithPassword({
@@ -100,7 +101,7 @@ export async function signin(state: FormState, formData: FormData) {
     });
 
     if (error) {
-      console.error('Signin Error:', error);
+      console.error('Signin Error:', error)
       return {
         errors: {
           server: [error.message],
@@ -110,18 +111,19 @@ export async function signin(state: FormState, formData: FormData) {
 
     return {success: true, redirectTo: '/dashboard'}
   } catch (err) {
-    console.error('Unexpected Error:', err);
+    console.error('Unexpected Error:', err)
     return {
       errors: {
         server: ['An unexpected error occurred'],
       },
-    };
+    }
   }
 }
 
 export async function signOut() {
-  const supabase = await createClient();
-  await supabase.auth.signOut();
+  const supabase = await createClient()
+  await supabase.auth.signOut()
+  redirect('/signin')
 }
 
 export async function setUserDefaults() {
@@ -129,7 +131,7 @@ export async function setUserDefaults() {
 
   cookieStore.set({
     name: "settings", value: JSON.stringify(defaultSettings), httpOnly: true,
-  });
+  })
 
-  return defaultSettings;
+  return defaultSettings
 }
