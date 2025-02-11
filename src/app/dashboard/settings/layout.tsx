@@ -2,8 +2,7 @@ import {ReactNode} from "react";
 import {Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
-import {SettingsTab} from "@/types/types";
-import {settingTabs} from "./setting-tabs";
+import {type SettingsTab, settingTabs} from "@/app/dashboard/settings/setting-tabs";
 
 export default function ProfileLayout({children}: { children: ReactNode }) {
   return (<div className="space-y-6">

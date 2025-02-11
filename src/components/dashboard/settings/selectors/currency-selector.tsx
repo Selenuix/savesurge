@@ -2,8 +2,7 @@
 
 import {Label} from "@/components/ui/label";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
-import {supportedCurrencies} from "@/app/dashboard/settings/preferences/supported-currencies";
-import type {SupportedCurrency} from "@/types/types";
+import {supportedCurrencies, type SupportedCurrency} from "@/app/dashboard/settings/preferences/supported-currencies";
 import {useLocalStorage} from "@uidotdev/usehooks";
 
 export function CurrencySelector() {
@@ -12,7 +11,7 @@ export function CurrencySelector() {
     {}
   )
 
-  const handleChange = (value) => {
+  const handleChange = (value: any) => {
     console.log(value)
     /*setCurrencySettings(prev => ({
       ...prev,

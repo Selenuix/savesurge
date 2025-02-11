@@ -1,4 +1,7 @@
-import {SupportedTheme} from "@/types/types";
+export interface SupportedTheme {
+  label: 'Light' | 'Dark' | 'System'
+  value: 'light' | 'dark' | 'system'
+}
 
 export const supportedThemes: SupportedTheme[] = [
   {label: "System", value: "system"},

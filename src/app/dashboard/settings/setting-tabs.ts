@@ -1,4 +1,8 @@
-import {SettingsTab} from "@/types/types";
+export interface SettingsTab {
+  label: string
+  value: string
+  href: string
+}
 
 export const settingTabs: SettingsTab[] = [
   {

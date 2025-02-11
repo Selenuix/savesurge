@@ -1,4 +1,7 @@
-import {SupportedLanguage} from "@/types/types";
+export interface SupportedLanguage {
+  label: string
+  value: string
+}
 
 export const supportedLanguages: SupportedLanguage[] = [
   {label: "English (UK)", value: "en-GB"},

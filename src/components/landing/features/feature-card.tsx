@@ -1,4 +1,4 @@
-import {Feature} from "@/types/types";
+import type {Feature} from "@/components/landing/features/landing-features";
 
 interface FeatureCardProps {
   feature: Feature

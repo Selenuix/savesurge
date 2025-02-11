@@ -1,5 +1,5 @@
 import {Hero} from "@/components/landing/hero";
-import {Features} from "@/components/landing/features";
+import {Features} from "@/components/landing/features/features";
 import {PricingSection} from "@/components/landing/pricing-section";
 import {AuthButton} from "@/components/landing/auth-button";
 

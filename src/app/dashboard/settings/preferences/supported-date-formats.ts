@@ -1,4 +1,7 @@
-import {SupportedDateFormat} from "@/types/types";
+export interface SupportedDateFormat {
+  label: 'MM/DD/YYYY' | 'DD/MM/YYYY' | 'YYYY/MM/DD'
+  value: 'MM/DD/YYYY' | 'DD/MM/YYYY' | 'YYYY/MM/DD'
+}
 
 export const supportedDateFormats: SupportedDateFormat[] = [
   {label: "DD/MM/YYYY", value: "DD/MM/YYYY"},

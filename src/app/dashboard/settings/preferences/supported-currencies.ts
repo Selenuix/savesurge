@@ -1,4 +1,7 @@
-import {SupportedCurrency} from "@/types/types";
+export interface SupportedCurrency {
+  label: string
+  value: string
+}
 
 export const supportedCurrencies: SupportedCurrency[] = [
   {label: "EUR (€)", value: "EUR"},
