@@ -1,5 +1,20 @@
-import {BanknoteIcon, BellIcon, LineChart, PieChart, SearchIcon, Shield, TagsIcon, Wallet,} from "lucide-react";
-import {Feature} from "@/types/types";
+import {
+  BanknoteIcon,
+  BellIcon,
+  LineChart,
+  LucideIcon,
+  PieChart,
+  SearchIcon,
+  Shield,
+  TagsIcon,
+  Wallet
+} from "lucide-react";
+
+export interface Feature {
+  icon: LucideIcon
+  title: string
+  description: string
+}
 
 export const features: Feature[] = [{
   icon: Wallet,
