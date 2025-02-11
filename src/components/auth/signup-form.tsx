@@ -14,14 +14,21 @@ import {Label} from "@/components/ui/label"
 import {useActionState, useEffect} from "react";
 import {signup} from "@/actions/auth";
 import {useRouter} from "next/navigation";
+import {useToast} from "@/hooks/use-toast";
 
 export function SignupForm() {
   const [state, action, pending] = useActionState(signup, undefined)
   const router = useRouter();
+  const {toast} = useToast()
 
   useEffect(() => {
     if (state?.success) {
       router.push(state.redirectTo);
+    } else if (state?.errors) {
+      toast({
+        title: "Oops, something went wrong.",
+        description: state.errors.server,
+      })
     }
   }, [state, router]);
 

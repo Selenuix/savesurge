@@ -4,13 +4,10 @@ import {FormState, SigninFormSchema, SignupFormSchema} from '@/lib/definitions'
 import {createClient} from '@/utils/supabase/server'
 import {cookies} from "next/headers";
 import {defaultSettings} from "@/components/dashboard/settings/app-settings";
-import {redirect} from "next/navigation";
-
 
 export async function signup(state: FormState, formData: FormData) {
   const supabase = await createClient();
 
-  // Validate the input fields
   const validatedFields = SignupFormSchema.safeParse({
     firstname: formData.get('firstname') as string,
     lastname: formData.get('lastname') as string,
@@ -49,12 +46,12 @@ export async function signup(state: FormState, formData: FormData) {
       };
     }
 
-    // Insert into profiles table if user exists
+    // Create user profile
     if (data?.user?.id) {
       const {error: profileError} = await supabase
         .from('profiles')
         .insert({
-          id: data.user.id, firstname, lastname, username,
+          id: data.user.id, email, firstname, lastname, username,
         });
 
       if (profileError) {
@@ -81,7 +78,6 @@ export async function signup(state: FormState, formData: FormData) {
 export async function signin(state: FormState, formData: FormData) {
   const supabase = await createClient()
 
-  // Validate form fields
   const validatedFields = SigninFormSchema.safeParse({
     email: formData.get('email') as string, password: formData.get('password') as string,
   })
@@ -126,7 +122,6 @@ export async function signin(state: FormState, formData: FormData) {
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
-  redirect('/signin')
 }
 
 export async function setUserDefaults() {
