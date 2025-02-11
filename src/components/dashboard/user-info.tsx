@@ -11,7 +11,6 @@ export async function UserInfo() {
   }
 
   return (<div>
-    <p>Hello {data.user.email}</p>
-    <Logout/>
+    <p>Hello <span className='font-bold'>{data.user.email}</span></p>
   </div>)
 }
