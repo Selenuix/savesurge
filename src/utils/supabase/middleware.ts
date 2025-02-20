@@ -49,13 +49,13 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+  // Redirect to the login page if not authenticated
   if (request.nextUrl.pathname.startsWith('/dashboard') && !user) {
-    // Redirect to the login page if not authenticated
     return NextResponse.redirect(new URL('/signin', request.url));
   }
 
+  // Redirect logged-in users away from auth pages to /dashboard
   if (user && (request.nextUrl.pathname.startsWith("/signin") || request.nextUrl.pathname.startsWith("/signup"))) {
-    // Redirect logged-in users away from auth pages to /dashboard
     const url = request.nextUrl.clone();
     url.pathname = "/dashboard";
     return NextResponse.redirect(url);

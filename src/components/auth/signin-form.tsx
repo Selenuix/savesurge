@@ -5,28 +5,30 @@ import {Button} from "@/components/ui/button"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from "@/components/ui/card"
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
-import {useActionState, useEffect} from "react";
-import {setUserDefaults, signin} from "@/actions/auth";
-import {useRouter} from "next/navigation";
-import {type AppSettings} from "@/components/dashboard/settings/app-settings";
+import {useActionState, useEffect, useState} from "react";
+import {signin} from "@/actions/auth";
+import {type AppSettings, defaultSettings} from "@/components/dashboard/settings/app-settings";
 import {useLocalStorage} from "@uidotdev/usehooks";
 
 export function SigninForm() {
-  const [state, action, pending] = useActionState(signin, undefined)
-  const [settings, saveSettings] = useLocalStorage<AppSettings | null>("settings", null);
-  const router = useRouter();
+  const [settings, saveSettings] = useLocalStorage<AppSettings | undefined>("settings");
+  const [state, action, pending] = useActionState(undefined, signin)
+  const [errorMessages, setErrorMessages] = useState<{ email: string[]; password: string[] }>({
+    email: [],
+    password: []
+  });
 
   useEffect(() => {
-    (async () => {
-      if (state?.success) {
-        if (!settings) {
-          const defaultSettings: AppSettings = await setUserDefaults();
-          saveSettings(defaultSettings);
-        }
-        router.push(state.redirectTo);
-      }
-    })();
-  }, [state, router, settings, saveSettings]);
+    if (!settings) {
+      saveSettings(defaultSettings);
+    }
+  }, [settings, saveSettings]);
+
+  useEffect(() => {
+    if (state?.errors) {
+      setErrorMessages(state.errors);
+    }
+  }, [state]);
 
   return (<form action={action}>
     <Card className="mx-auto max-w-sm">
@@ -37,6 +39,20 @@ export function SigninForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
+        {errorMessages.email.length > 0 && (
+          <div className="mb-4 text-red-600">
+            {errorMessages.email.map((error, index) => (
+              <p key={index}>{error}</p>
+            ))}
+          </div>
+        )}
+        {errorMessages.password.length > 0 && (
+          <div className="mb-4 text-red-600">
+            {errorMessages.password.map((error, index) => (
+              <p key={index}>{error}</p>
+            ))}
+          </div>
+        )}
         <div className="grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
@@ -47,17 +63,15 @@ export function SigninForm() {
               placeholder="maxrobinson@example.com"
               required
             />
-            {state?.errors?.email && <p>{state.errors.email}</p>}
           </div>
 
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" name="password" type="password"/>
+            <Input id="password" name="password" type="password" required/>
           </div>
-          {state?.errors?.password && <p className="text-sm text-red-500">{state.errors.password}</p>}
 
           <Button type="submit" className="w-full" disabled={pending}>
-            Sign In
+            {pending ? "Signing In..." : "Sign In"}
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">

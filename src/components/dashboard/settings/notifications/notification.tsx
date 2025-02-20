@@ -13,11 +13,11 @@ interface NotificationProps {
 }
 
 export function Notification({title, description, id}: NotificationProps) {
-  const [settings, setSettings] = useLocalStorage<AppSettings>("settings", defaultSettings);
+  const [settings, saveSettings] = useLocalStorage<AppSettings>("settings", defaultSettings);
   const {toast} = useToast()
 
   const handleToggle = (value: boolean) => {
-    setSettings(prev => ({
+    saveSettings(prev => ({
       ...prev, notification: {
         ...prev.notification, [id]: value
       }
