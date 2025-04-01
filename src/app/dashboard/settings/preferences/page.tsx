@@ -4,6 +4,7 @@ import {ThemeSelector} from "@/components/dashboard/settings/preferences/selecto
 import {LanguageSelector} from "@/components/dashboard/settings/preferences/selectors/language-selector";
 import {DateFormatSelector} from "@/components/dashboard/settings/preferences/selectors/date-format-selector";
 import {CurrencySelector} from "@/components/dashboard/settings/preferences/selectors/currency-selector";
+import {ClientOnlyComponent} from "@/components/client-only-component";
 
 export default async function PreferencesPage() {
   return (<div className="space-y-6">
@@ -18,7 +19,9 @@ export default async function PreferencesPage() {
         <div className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="theme">Theme</Label>
-            <ThemeSelector/>
+            <ClientOnlyComponent>
+              <ThemeSelector/>
+            </ClientOnlyComponent>
           </div>
         </div>
       </CardContent>
@@ -35,17 +38,23 @@ export default async function PreferencesPage() {
         <div className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="language">Language</Label>
-            <LanguageSelector/>
+            <ClientOnlyComponent>
+              <LanguageSelector/>
+            </ClientOnlyComponent>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="date-format">Date Format</Label>
-            <DateFormatSelector/>
+            <ClientOnlyComponent>
+              <DateFormatSelector/>
+            </ClientOnlyComponent>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="currency">Currency</Label>
-            <CurrencySelector/>
+            <ClientOnlyComponent>
+              <CurrencySelector/>
+            </ClientOnlyComponent>
           </div>
         </div>
       </CardContent>

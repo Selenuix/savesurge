@@ -4,6 +4,7 @@ import {
   AvailableNotification,
   availableNotifications
 } from "@/components/dashboard/settings/notifications/available-notifications";
+import {ClientOnlyComponent} from "@/components/client-only-component";
 
 export default function NotificationsPage() {
   return (<div className="space-y-6">
@@ -17,12 +18,15 @@ export default function NotificationsPage() {
       <CardContent className="space-y-6">
         <div className="space-y-4">
           {availableNotifications.map((notification: AvailableNotification, key: number) => {
-            return (<Notification
-              key={key}
-              id={notification.id}
-              title={notification.title}
-              description={notification.description}
-            />);
+            return (
+              <ClientOnlyComponent><Notification
+                key={key}
+                id={notification.id}
+                title={notification.title}
+                description={notification.description}
+              />
+              </ClientOnlyComponent>
+            );
           })}
         </div>
       </CardContent>

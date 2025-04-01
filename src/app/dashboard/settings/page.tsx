@@ -5,7 +5,7 @@ import {Button} from "@/components/ui/button";
 import {getUserProfile} from "@/utils/supabase/server";
 
 export default async function SettingsPage() {
-  const profile = await getUserProfile();
+  const profile: any = await getUserProfile();
 
   return (
     <div className="space-y-6">
