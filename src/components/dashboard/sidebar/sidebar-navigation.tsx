@@ -14,6 +14,7 @@ import {useRouter} from "next/navigation";
 import {useActiveRoute} from "@/utils/navigation";
 import {cn} from "@/lib/utils";
 import {menuItems} from "@/components/dashboard/sidebar/menu-items";
+import {HeaderLogo} from "@/components/common/HeaderLogo";
 
 export function SidebarNavigation() {
   const router = useRouter();
@@ -28,6 +29,7 @@ export function SidebarNavigation() {
 
   return (
     <SidebarGroup>
+      <HeaderLogo/>
       <SidebarGroupLabel>Menu</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>

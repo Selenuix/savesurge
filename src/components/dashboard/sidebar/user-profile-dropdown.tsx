@@ -39,7 +39,7 @@ export function UserProfileDropdown() {
 
   return (<DropdownMenu>
     <DropdownMenuTrigger asChild>
-      <Button variant="ghost" className="w-full flex items-center justify-between">
+      <Button variant="ghost" className="w-full flex items-center justify-between p-0">
         <div className="flex items-center space-x-3">
           <div className="flex-shrink-0">
             {loading ? (<Skeleton className="h-8 w-8 rounded-full bg-gray-600"/>) : (
