@@ -3,6 +3,11 @@ import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {getUserProfile} from "@/utils/supabase/server";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: "SaveSurge - Settings",
+};
 
 export default async function SettingsPage() {
   const profile: any = await getUserProfile();

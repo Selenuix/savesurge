@@ -3,6 +3,11 @@ import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {SaveSettings} from "@/components/dashboard/settings/preferences/save-preferences";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: "SaveSurge - Settings",
+};
 
 export default function SecurityPage() {
   return (

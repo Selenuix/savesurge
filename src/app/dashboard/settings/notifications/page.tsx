@@ -5,6 +5,11 @@ import {
   availableNotifications
 } from "@/components/dashboard/settings/notifications/available-notifications";
 import {ClientOnlyComponent} from "@/components/client-only-component";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: "SaveSurge - Settings",
+};
 
 export default function NotificationsPage() {
   return (<div className="space-y-6">
@@ -19,12 +24,13 @@ export default function NotificationsPage() {
         <div className="space-y-4">
           {availableNotifications.map((notification: AvailableNotification, key: number) => {
             return (
-              <ClientOnlyComponent><Notification
-                key={key}
-                id={notification.id}
-                title={notification.title}
-                description={notification.description}
-              />
+              <ClientOnlyComponent>
+                <Notification
+                  key={key}
+                  id={notification.id}
+                  title={notification.title}
+                  description={notification.description}
+                />
               </ClientOnlyComponent>
             );
           })}

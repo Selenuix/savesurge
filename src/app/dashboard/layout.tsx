@@ -4,6 +4,11 @@ import {SidebarToggle} from "@/components/dashboard/sidebar/sidebar-toggle";
 import {UserProfileDropdown} from "@/components/dashboard/sidebar/user-profile-dropdown";
 import {SidebarNavigation} from "@/components/dashboard/sidebar/sidebar-navigation";
 import {Toaster} from "@/components/ui/toaster";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: "SaveSurge - Budgeting & Expense Tracking",
+};
 
 export default function DashboardLayout({children}: { children: ReactNode }) {
   return (

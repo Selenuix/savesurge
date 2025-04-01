@@ -10,9 +10,10 @@ interface NotificationProps {
   id: string
   title: string
   description: string
+  key: number
 }
 
-export function Notification({title, description, id}: NotificationProps) {
+export function Notification({title, description, id, key}: NotificationProps) {
   const [settings, saveSettings] = useLocalStorage<AppSettings>("settings", defaultSettings);
   const {toast} = useToast()
 
@@ -26,7 +27,7 @@ export function Notification({title, description, id}: NotificationProps) {
   };
 
   return (
-    <div className="flex items-center justify-between space-x-2">
+    <div className="flex items-center justify-between space-x-2" key={key}>
       <Label htmlFor={id} className="flex flex-col space-y-1">
         <span className="font-bold">{title}</span>
         <span className="font-normal text-sm text-muted-foreground">{description}</span>

@@ -5,6 +5,11 @@ import {LanguageSelector} from "@/components/dashboard/settings/preferences/sele
 import {DateFormatSelector} from "@/components/dashboard/settings/preferences/selectors/date-format-selector";
 import {CurrencySelector} from "@/components/dashboard/settings/preferences/selectors/currency-selector";
 import {ClientOnlyComponent} from "@/components/client-only-component";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: "SaveSurge - Settings",
+};
 
 export default async function PreferencesPage() {
   return (<div className="space-y-6">

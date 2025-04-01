@@ -3,6 +3,11 @@ import {Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {type SettingsTab, settingTabs} from "@/app/dashboard/settings/setting-tabs";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: "SaveSurge - Settings",
+};
 
 export default function ProfileLayout({children}: { children: ReactNode }) {
   return (<div className="space-y-6">
