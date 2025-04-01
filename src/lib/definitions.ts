@@ -1,6 +1,6 @@
 import {z} from 'zod'
 
-export const signupFormSchema = z.object({
+export const SignupFormSchema = z.object({
   firstname: z
     .string()
     .trim(),
@@ -24,7 +24,7 @@ export const signupFormSchema = z.object({
     .trim(),
 })
 
-export const signinFormSchema = z.object({
+export const SigninFormSchema = z.object({
   email: z.string().email({message: 'Please enter a valid email.'}).trim(),
   password: z
     .string()
