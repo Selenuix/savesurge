@@ -1,8 +1,3 @@
-import type {Metadata} from "next";
-
-export const metadata: Metadata = {
-  title: "SaveSurge - Analytics",
-};
 export default function AnalyticsPage() {
-  return <h1>Analytics</h1>
+  return <h1 className="text-3xl md:text-4xl font-bold pb-4">Analytics</h1>
 }

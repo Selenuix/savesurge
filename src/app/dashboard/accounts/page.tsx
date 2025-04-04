@@ -5,5 +5,5 @@ export const metadata: Metadata = {
 };
 
 export default function AccountsPage() {
-  return <h1>Accounts</h1>
+  return <h1 className="text-3xl md:text-4xl font-bold pb-4">Accounts</h1>
 }

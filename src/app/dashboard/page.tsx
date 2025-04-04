@@ -10,5 +10,10 @@ export default async function Dashboard() {
     redirect('/signin')
   }
 
-  return <UserInfo user={data.user}/>
+  return (
+    <>
+      <h1 className="text-3xl md:text-4xl font-bold pb-4">Overview</h1>
+      <UserInfo user={data.user}/>
+    </>
+  )
 }
