@@ -12,6 +12,10 @@ export function TransactionsWrapper() {
   const columns = getColumns(settings.language, settings.dateFormat)
 
   return (<ClientOnlyComponent>
+    <div className="pb-4">
+      <h1 className="text-3xl md:text-4xl font-bold">Transactions</h1>
+      <p className="text-gray-600 text-sm">Your latest financial activities</p>
+    </div>
     <DataTable columns={columns} data={transactionsDataset}/>
   </ClientOnlyComponent>)
 }

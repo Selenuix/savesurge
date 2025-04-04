@@ -13,11 +13,11 @@ export function RecentTransactions() {
         <CardDescription>Your latest financial activities</CardDescription>
       </CardHeader>
       <CardContent>
-        <DataTable 
-          columns={getColumns('en-GB', 'DD/MM/YYYY')} 
+        <DataTable
+          columns={getColumns('en-GB', 'DD/MM/YYYY')}
           data={transactionsDataset.slice(0, 5)}
         />
       </CardContent>
     </Card>
   );
-} 
+}
