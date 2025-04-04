@@ -18,7 +18,7 @@ export async function UserInfo({user}: { user: any }) {
 
   if (data) {
     return (<div>
-      <p>Hello <span className='font-bold'>{data.firstname}</span>!</p>
+      <p className="text-muted-foreground">Welcome back, {data.firstname}</p>
     </div>)
   }
 }
